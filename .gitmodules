@@ -5,3 +5,6 @@
 [submodule "libiconv"]
 	path = libiconv
 	url = https://github.com/w4123/libiconv-android-prebuilt
+[submodule "DiceWebUI"]
+	path = DiceWebUI
+	url = https://github.com/Dice-Developer-Team/DiceWebUI.git

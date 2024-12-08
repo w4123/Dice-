@@ -414,8 +414,8 @@ const dict_ci<string> PlainMsg
 	{
 		"strAddGroup",
 		R"(欢迎选择{strSelfName}的免费掷骰服务！
-请使用.dismiss QQ号（或后四位） 使{self}退群退讨论组
-.bot on/off QQ号（或后四位） //开启或关闭指令
+请使用.dismiss QQ号（或at或后四位） 使{self}退群退讨论组
+.bot on/off QQ号（或at或后四位） //开启或关闭指令
 .reply on/off 启用/禁用回复 //禁用或启用回复
 .help协议 确认服务协议
 .help指令 查看指令列表
@@ -444,7 +444,7 @@ const dict_ci<string> PlainMsg
 	{"strBotHeader", "试验型 " },
 	{"strBotMsg", "\n使用.help 查看{self}帮助文档"},
 	{"strHlpMsg", R"(请使用.dismiss ID（或后四位） 使{self}退群退讨论组
-.bot on/off ID（或后四位） //开启或关闭指令
+.bot on/off ID（或at或后四位） //开启或关闭指令
 .help协议 确认服务协议
 .help指令 查看指令列表
 .help群管 查看群管指令
@@ -682,7 +682,7 @@ mod按序读取，且从后向前覆盖)"},
 {"授权许可","&authoize"},
 {"authorize","授权许可(非信任用户使用时转为向管理申请许可)\n!authorize (+[群号]) ([申请理由])\n群内原地发送可省略群号，无法自动授权时会连同理由发给管理\n默认格式为:!authorize 申请用途:[ **请写入理由** ] 我已了解Dice!基本用法，仔细阅读并保证遵守{strSelfName}的用户协议，如需停用指令使用[ **请写入指令** ]，用后使用[ **请写入指令** ]送出群"},
 {"开关","&bot"},
-{"bot",".bot on/off开启/静默骰子（限群管理）\n.bot无视静默状态，只要插件开启且不在黑名单总是有效"},
+{"bot",".bot on/off 开启/静默骰子指令（限群管理）\n.bot及回复词无视静默状态，只要插件开启且不在黑名单总是有效"},
 {"规则速查","&rule"},
 {"规则","&rule"},
 {"rule","规则设置/速查：.rule set [规则] 或.rules ([规则]):[待查词条]\n.ruleset dnd //设置房间规则书\n.rules 跳跃 //优先检索房间规则书，否则复数规则有相同词条时，择一返回\n.rules COC:大失败 //coc默认搜寻coc7的词条,dnd默认搜寻3r\n.rules dnd:语言"},

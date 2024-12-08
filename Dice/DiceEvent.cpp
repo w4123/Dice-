@@ -1793,6 +1793,10 @@ int DiceEvent::InnerOrder() {
 #endif
 		if (strOption == "save") {
 			dataBackUp();
+			if (console["AutoSaveInterval"] > 0) {
+				sch.refresh_cold("autosave", time(NULL) + console["AutoSaveInterval"] * (time_t)60);
+				sch.add_job_for(console["AutoSaveInterval"] * 60, "autosave");
+			}
 			note("已手动保存{self}的数据√", 0b1);
 			return 1;
 		}
