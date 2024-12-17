@@ -4260,7 +4260,9 @@ int DiceEvent::InnerOrder() {
 					strAttr = readAttrName();
 					if (pc->countExp(strAttr)) {
 						strMainDice += pc->getExp(strAttr);
-						if (!pc->has("&" + strAttr) && pc->get(strAttr).type == AttrVar::Type::Integer)strMainDice += 'a';
+					}
+					else if (auto val{ pc->get(strAttr) };val.type == AttrVar::Type::Integer) {
+						strMainDice += val.to_str();
 					}
 					else {
 						strReason = strAttr;

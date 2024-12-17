@@ -462,7 +462,7 @@ bool lua_call_task(const AttrVars& task) {
 	// 转换为UTF8
 	string filename(GBKtoUTF8(file));
 #else
-	string filename(luaFile);
+	string filename(file);
 #endif
 	if (lua_pcall(L, 0, 0, 0)) {
 		string pErrorMsg = lua_to_u8string_from_native(L, -1);

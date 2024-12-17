@@ -514,6 +514,7 @@ ByteS AttrVar::to_bytes()const {
 	case Type::Integer:
 	case Type::Number:
 	case Type::ID:
+	case Type::GBTable:
 	case Type::Table:
 	case Type::Set:
 		return {};
@@ -567,6 +568,8 @@ string AttrVar::print()const {
 	case Type::U8String:
 		return text;
 		break;
+	case Type::GBTable:
+		return {};
 	case Type::Table:
 		return table->print();
 		break;
@@ -785,6 +788,7 @@ fifo_json AttrVar::to_json()const {
 		break;
 	case Type::Set:
 		return ::to_json(*flags);
+	case Type::GBTable:
 	case Type::Function:
 		return {};
 	}
@@ -1070,6 +1074,7 @@ void from_json(const fifo_json& j, AttrVars& vars) {
 void AttrVar::writeb(std::ofstream& fout) const {
 	switch (type) {
 	case Type::Nil:
+	case Type::GBTable:
 		fwrite(fout, (char)0);
 		break;
 	case Type::Boolean:

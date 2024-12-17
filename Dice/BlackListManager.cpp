@@ -1184,7 +1184,7 @@ void DDBlackManager::verify(const fifo_json& pJson, long long operatorQQ)
 		if (mark.type == "local" || mark.type == "other" || mark.isSource(console.DiceMaid)) {
 			if (credit > 0)console.log(
 				getName(operatorQQ) + "已通知" + getMsg("strSelfName") + "不良记录(未采用):\n!warning" + 
-					pJson.dump()), 1, printSTNow();
+					pJson.dump(), 1, printSTNow());
 			return;
 		}
 	}
@@ -1218,7 +1218,7 @@ void DDBlackManager::verify(const fifo_json& pJson, long long operatorQQ)
 		}
 		if (mark.fromGID.first && (groupset(mark.fromGID.first, "忽略") > 0 || groupset(mark.fromGID.first, "协议无效") > 0 || ExceptGroups.count(mark.fromGID.first)))return;
 		insert(mark);
-		console.log(getName(operatorQQ) + "已通知" + getMsg("strSelfName") + "不良记录" + to_string(vBlackList.size() - 1) + ":\n!warning" + pJson.dump()), 1, printSTNow();
+		console.log(getName(operatorQQ) + "已通知" + getMsg("strSelfName") + "不良记录" + to_string(vBlackList.size() - 1) + ":\n!warning" + pJson.dump(), 1, printSTNow());
 	}
 	else 
 	{ 
@@ -1249,7 +1249,7 @@ void DDBlackManager::verify(const fifo_json& pJson, long long operatorQQ)
 		if (mark.danger != old_mark.danger && credit < 3) { 
 			mark.danger = old_mark.danger; 
 		}
-		if(update(mark,index,credit))console.log(getName(operatorQQ) + "已更新" + getMsg("strSelfName") + "不良记录" + to_string(index) + ":\n!warning" + pJson.dump()), 1, printSTNow();
+		if(update(mark,index,credit))console.log(getName(operatorQQ) + "已更新" + getMsg("strSelfName") + "不良记录" + to_string(index) + ":\n!warning" + pJson.dump(), 1, printSTNow());
 	}
 }
 

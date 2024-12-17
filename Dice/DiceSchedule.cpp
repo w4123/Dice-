@@ -105,20 +105,20 @@ void DiceScheduler::push_job(const char* job_name, bool isSelf, const AttrVars& 
 }
 //将任务加入等待队列
 void DiceScheduler::add_job_for(unsigned int waited, const AttrObject& job) {
-	std::unique_lock<std::mutex> lock_queue(mtJobWaited);
+	std::lock_guard<std::mutex> lock_queue(mtJobWaited);
 	queueJobWaited.emplace(time(nullptr) + waited, job);
 }
 void DiceScheduler::add_job_for(unsigned int waited, const char* job_name) {
-	std::unique_lock<std::mutex> lock_queue(mtJobWaited);
+	std::lock_guard<std::mutex> lock_queue(mtJobWaited);
 	queueJobWaited.emplace(time(nullptr) + waited, AttrVars{ { "cmd" , job_name } });
 }
 
 void DiceScheduler::add_job_until(time_t cloc, const AttrObject& job) {
-	std::unique_lock<std::mutex> lock_queue(mtJobWaited);
+	std::lock_guard<std::mutex> lock_queue(mtJobWaited);
 	queueJobWaited.emplace(cloc, job);
 }
 void DiceScheduler::add_job_until(time_t cloc, const char* job_name) {
-	std::unique_lock<std::mutex> lock_queue(mtJobWaited);
+	std::lock_guard<std::mutex> lock_queue(mtJobWaited);
 	queueJobWaited.emplace(cloc, AttrVars{ { "cmd" , job_name } });
 }
 
