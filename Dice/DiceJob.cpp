@@ -500,8 +500,8 @@ void log_put(AttrObject& job) {
 		"ap-southeast-1");
 	if (job->at("ret") == "SUCCESS") {
 #endif //_Win32
-		job->at("log_file") = nameLog;
-		job->at("log_url") = "https://logpainter.kokona.tech/?s3=" + nameLog;
+		job->set("log_file",nameLog);
+		job->set("log_url", "https://logpainter.kokona.tech/?s3=" + nameLog);
 		reply(job, "{strLogUpSuccess}");
 	}
 	else if (++cntExec > 2) {

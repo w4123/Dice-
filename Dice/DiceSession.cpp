@@ -29,7 +29,7 @@ void LogInfo::append(const string& s) {
 }
 
 bool DiceSession::empty()const {
-	return dict.empty() && player->empty() && obs->empty() && !logger.tLastMsg && decks.empty();
+	return dict.empty() && player->empty() && obs->empty() && !logger.tStart && decks.empty();
 }
 bool DiceSession::has(const string& key)const {
 	static std::unordered_set<string> items{ "name", "gms", "pls", "obs", "log_name", "log_file" };
@@ -256,7 +256,7 @@ void DiceSession::log_end(DiceEvent* msg) {
 		return;
 	}
 	msg->set("log_file", logger.fileLog);
-	msg->set("log_path", log_path().string());
+	msg->set("log_path", log_path().u8string());
 	msg->replyMsg("strLogEnd");
 	update();
 	msg->set("hook","LogEnd");

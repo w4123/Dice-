@@ -150,7 +150,7 @@ std::string UTF8toLocal(const std::string& str) {
 #ifdef _WIN32
 	return UTF8toGBK(str);
 #else
-	return str
+	return str;
 #endif
 }
 std::string GBKtoLocal(const std::string& strGBK){
@@ -211,7 +211,7 @@ std::wstring UTF8toU(const std::string& strUTF8) {
 	delete[] strUTF16;
 	return wstrOut;
 #else
-	return ConvertEncoding<char>(strUTF8, "utf-8", "gb18030");
+	return ConvertEncoding<wchar_t>(strUTF8, "utf-8", "utf-32le");
 #endif
 }
 

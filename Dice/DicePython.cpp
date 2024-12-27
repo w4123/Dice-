@@ -690,7 +690,7 @@ PYDEF(getDiceID) {
 }
 PYDEF(getDiceDir) {
 	auto dir{ DiceDir.wstring() };
-	return PyUnicode_FromUnicode(dir.c_str(), (Py_ssize_t)dir.length());
+	return PyUnicode_FromWideChar(dir.c_str(), (Py_ssize_t)dir.length());
 }
 typedef struct {
 	PyObject_HEAD
@@ -1170,11 +1170,12 @@ PyGlobal::PyGlobal() {
 		|| std::filesystem::exists((dirPy = dirExe) / "python3.dll")) {
 		//Py_SetPythonHome(dirPy.wstring().c_str());
 		PyConfig_SetString(&config, &config.home, dirPy.wstring().c_str());
+		//Py_SetProgramName(L"DiceMaid");
+		PyConfig_SetString(&config, &config.program_name, L"DiceMaid");
 		//Py_SetPath((dirPy / "python311.zip").wstring().c_str());
 		PyWideStringList_Append(&config.module_search_paths, (dirPy / "python311.zip").wstring().c_str());
 	}
 	status = PyConfig_Read(&config);
-	Py_SetProgramName(L"DiceMaid");
 	try {
 		static auto import_dice = PyImport_AppendInittab(DiceModuleName, PyInit_DiceMaid);
 		if (import_dice) {
